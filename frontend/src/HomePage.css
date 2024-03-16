@@ -113,6 +113,7 @@ body {
 .header h1 {
     color: #343a40;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .about-us h2 {

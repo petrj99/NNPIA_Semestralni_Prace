@@ -1,28 +1,13 @@
 import React from 'react';
 import './HomePage.css';
-import logo from './images/nnpia_logo.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
+import NavBar from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
 function HomePage() {
     return (
         <div className="homepage">
-            <nav className="navbar">
-                <img src={logo} alt="Logo Společnosti" className="logo"/>
-                <div className="navbar-title">
-                    <span className="text-primary">Orim</span>
-                    <span className="text-secondary">Car Rental</span>
-                </div>
-                <div className="navbar-menu">
-                    <div className="menu-section">
-                        <a href="/uvod" className="menu-item">Úvod</a>
-                        <a href="/nabidka-vozidel" className="menu-item">Nabídka vozidel</a>
-                    </div>
-                    <div className="login-section">
-                        <button className="login-button">Přihlášení</button>
-                    </div>
-                </div>
-            </nav>
+            <NavBar />
 
             <div className="middle-content">
                 <header className="header">
@@ -53,34 +38,7 @@ function HomePage() {
                 </section>
             </div>
 
-            <footer className="footer">
-                <div className="footer-content">
-                    <div className="contact-info">
-                        <h3>Kontaktní Údaje</h3>
-                        <p>Orim Car Rental, s.r.o.</p>
-                        <p>Vozová 1234/56, 110 00 Praha 1</p>
-                        <p>Email: kontakt@orimrental.cz</p>
-                        <p>Telefon: +420 123 456 789</p>
-                    </div>
-                    <div className="social-media">
-                        <h3>Sledujte Nás</h3>
-                        <div className="social-icons">
-                            <a href="https://facebook.com" className="social-icon">
-                                <FontAwesomeIcon icon={faFacebookF}/>
-                            </a>
-                            <a href="https://instagram.com" className="social-icon">
-                                <FontAwesomeIcon icon={faInstagram}/>
-                            </a>
-                            <a href="https://twitter.com" className="social-icon">
-                                <FontAwesomeIcon icon={faTwitter}/>
-                            </a>
-                            <a href="https://linkedin.com" className="social-icon">
-                                <FontAwesomeIcon icon={faLinkedinIn}/>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }
