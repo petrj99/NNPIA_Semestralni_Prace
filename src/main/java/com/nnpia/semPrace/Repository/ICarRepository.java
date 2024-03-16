@@ -1,6 +1,6 @@
-package Repository;
+package com.nnpia.semPrace.Repository;
 
-import Entity.Car;
+import com.nnpia.semPrace.Entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

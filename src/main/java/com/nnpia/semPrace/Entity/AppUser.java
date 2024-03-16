@@ -1,4 +1,4 @@
-package Entity;
+package com.nnpia.semPrace.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

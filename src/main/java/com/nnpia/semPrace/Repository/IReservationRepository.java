@@ -1,7 +1,7 @@
-package Repository;
+package com.nnpia.semPrace.Repository;
 
-import Entity.AppUser;
-import Entity.Reservation;
+import com.nnpia.semPrace.Entity.AppUser;
+import com.nnpia.semPrace.Entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
