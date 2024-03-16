@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    background-image: url('./images/nnpia_background.jpg');
+    background-size: cover; /* Pokryje celou plochu, může být oříznutý */
+    background-repeat: no-repeat; /* Obrázek se nebude opakovat */
+    background-position: center center; /* Centruje obrázek na stránce */
+    background-attachment: fixed; /* Obrázek zůstane pevný při scrollování */
+}
+
+.homepage {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #e68b02;
+    color: white;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-section {
+    display: flex;
+    justify-content: center;
+}
+
+.login-section {
+    margin-left: 20px;
+}
+
+.menu-item, .login-button {
+    margin: 0 10px; /* Přidá mezery mezi položkami menu a tlačítkem */
+}
+
+.logo {
+    height: 50px; /* Upravte výšku loga dle potřeby */
+    margin-right: 20px;
+}
+
+.navbar-title {
+    font-size: 24px;
+    display: flex;
+    align-items: baseline;
+}
+
+.text-primary {
+    font-weight: bold;
+    color: #007bff;
+    transition: color 0.3s ease;
+    margin-right: 5px;
+}
+
+.text-secondary {
+    color: #343a40;
+    font-weight: lighter;
+    transition: color 0.3s ease;
+}
+
+.navbar-title:hover .text-primary {
+    color: #343a40;
+}
+
+.navbar-title:hover .text-secondary {
+    color: #007bff;
+}
+
+.navbar-menu {
+    margin-left: auto;
+    display: flex;
+}
+
+.navbar-menu a,
+.login-button {
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    color: white;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.navbar-menu a:hover,
+.login-button:hover {
+    background-color: #0056b3; /* Slightly darker blue */
+    color: #ffffff;
+}
+
+.login-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.middle-content {
+    background-color: rgba(230, 139, 2, 0.8);
+    border-radius: 15px;
+    color: white;
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.about-us h2 {
+    color: #007bff; /* Dark Blue */
+}
+
+.about-section p {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 20px;
+}
+
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.footer h3 {
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    list-style: none;
+}
+
+.social-icon {
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Part */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .navbar-menu a,
+    .login-button {
+        padding: 10px 0;
+    }
+
+    .logo {
+        margin: 0 auto 10px;
+    }
+}

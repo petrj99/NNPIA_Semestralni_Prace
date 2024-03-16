@@ -39,3 +39,20 @@ tasks.named('bootBuildImage') {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+task npmBuild(type: Exec) {
+	workingDir 'frontend'
+	if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+		commandLine 'cmd', '/c', 'npm', 'run', 'build'
+	} else {
+		commandLine 'sh', '-c', 'npm run build'
+	}
+}
+
+task copyReactBuildToStatic(type: Copy) {
+	dependsOn npmBuild
+	from 'frontend/build'
+	into 'src/main/resources/static'
+}
+
+build.dependsOn(copyReactBuildToStatic)
