@@ -1,7 +1,14 @@
 import React from 'react';
 import logo from '../images/nnpia_logo.png';
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+    let navigate = useNavigate();
+
+    function handleLoginClick() {
+        navigate('/login');
+    }
+
     return (
         <nav className="navbar">
             <img src={logo} alt="Logo Společnosti" className="logo"/>
@@ -15,7 +22,7 @@ function NavBar() {
                     <a href="/nabidka-vozidel" className="menu-item">Nabídka vozidel</a>
                 </div>
                 <div className="login-section">
-                    <button className="login-button">Přihlášení</button>
+                    <button className="login-button" onClick={handleLoginClick}>Přihlášení</button>
                 </div>
             </div>
         </nav>
