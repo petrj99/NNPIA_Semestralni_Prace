@@ -6,7 +6,7 @@ function NavBar() {
     let navigate = useNavigate();
 
     function handleLoginClick() {
-        navigate('/login');
+        navigate('/prihlaseni');
     }
 
     return (

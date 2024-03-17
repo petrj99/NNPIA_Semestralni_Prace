@@ -13,16 +13,19 @@ function Login() {
                 <h2>Přihlášení</h2>
                 <div className="form-group">
                     <label htmlFor="username">Uživatelské jméno:</label>
-                    <input type="text" id="username" name="username" required />
+                    <input type="text" id="username" name="username" required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Heslo:</label>
-                    <input type="password" id="password" name="password" required />
+                    <input type="password" id="password" name="password" required/>
                 </div>
                 <button type="submit" className="login-button">Přihlásit se</button>
+                <div className="registration-link">
+                    Nemáte účet? <a href="/registrace">Zaregistrujte se</a>
+                </div>
             </form>
         </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 }

@@ -22,6 +22,7 @@
 .login-form h2 {
     color: #343a40;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .form-group {
@@ -56,4 +57,8 @@
 
 .login-button:hover {
     background-color: #0056b3;
+}
+
+.registration-link {
+    margin-top: 10px;
 }
