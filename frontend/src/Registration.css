@@ -4,12 +4,11 @@
     flex-direction: column;
 }
 
-/* Nastavení kontejneru formuláře pro centrování pouze vlastního obsahu */
 .registration-form-container {
     margin: 80px auto;
-    width: 100%; /* Zajistí, že šířka je na celou šířku rodiče */
-    max-width: 400px; /* Maximální šířka formuláře */
-    padding: 20px; /* Padding pro formulář */
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
     background-color: rgba(230, 139, 2, 0.8);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -42,7 +41,7 @@
 }
 
 .registration-button {
-    background-color: #007bff; /* Modrá barva pro tlačítko */
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -54,5 +53,5 @@
 }
 
 .registration-button:hover {
-    background-color: #0056b3; /* Tmavší modrá při najetí myší */
+    background-color: #0056b3;
 }
