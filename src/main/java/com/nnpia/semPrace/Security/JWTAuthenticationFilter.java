@@ -17,12 +17,11 @@ import java.io.IOException;
 @Service
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
     private final JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
     private final CustomUserDetailsService userDetailsService;
 
+    @Autowired
     public JWTAuthenticationFilter(JwtTokenUtil jwtTokenUtil, CustomUserDetailsService userDetailsService) {
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;

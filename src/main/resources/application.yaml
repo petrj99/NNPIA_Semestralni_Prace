@@ -15,3 +15,6 @@ spring:
       hibernate:
         show-sql: true
         format-sql: true
+
+jwt:
+  secret: klic123
