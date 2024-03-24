@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +44,9 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(Authentication authentication) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userDetails.getUsername());
+        return doGenerateToken(claims, authentication.getName());
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
