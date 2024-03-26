@@ -38,10 +38,11 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(auth -> auth
                         .requestMatchers("/").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/app-user/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/app-user/**").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/app-user/**").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/app-user/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/user/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/user/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/user/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/user/**").authenticated()
+                        .requestMatchers("/muj-profil").authenticated()
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session

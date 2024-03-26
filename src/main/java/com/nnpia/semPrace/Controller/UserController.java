@@ -13,12 +13,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/")
@@ -68,5 +68,20 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Nesprávné uživatelské jméno nebo heslo");
         }
+    }
+
+    @GetMapping("api/profile")
+    public AppUser getUserProfile() {
+        // Získání emailu aktuálně přihlášeného uživatele ze SecurityContextHolder
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email;
+
+        if (principal instanceof UserDetails) {
+            email = ((UserDetails)principal).getUsername();
+        } else {
+            email = principal.toString();
+        }
+
+        return appUserRepository.findByEmail(email);
     }
 }

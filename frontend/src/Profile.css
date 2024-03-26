@@ -1,0 +1,33 @@
+.profile-page {
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.user-profile {
+    background-color: rgba(230, 139, 2, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.user-profile h2 {
+    color: #333; /* Tmavší barva textu pro nadpis */
+    margin-bottom: 20px; /* Odstup nadpisu od informací */
+}
+
+.user-profile div {
+    margin-bottom: 10px; /* Odstupy mezi informacemi */
+}
+
+.user-profile div strong {
+    color: #333;
+}

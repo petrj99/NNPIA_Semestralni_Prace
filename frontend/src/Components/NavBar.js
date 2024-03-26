@@ -8,7 +8,7 @@ function NavBar() {
 
     const handleLogout = () => {
         sessionStorage.removeItem('token');
-        window.location.href = '/';
+        navigate('/');
     };
 
     function handleLoginClick() {
