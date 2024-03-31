@@ -20,14 +20,32 @@
 }
 
 .user-profile h2 {
-    color: #333; /* Tmavší barva textu pro nadpis */
-    margin-bottom: 20px; /* Odstup nadpisu od informací */
+    color: #17100c;
+    font-weight: 300;
+    margin-bottom: 20px;
 }
 
 .user-profile div {
-    margin-bottom: 10px; /* Odstupy mezi informacemi */
+    padding: 8px 0; /* Přidání mezery nad a pod řádky */
+    border-bottom: 1px solid #ccc; /* Přidání spodního okraje jako čáry */
 }
 
-.user-profile div strong {
+.user-profile div:last-child {
+    border-bottom: none; /* Odebrání spodního okraje u posledního řádku */
+}
+
+.user-profile h2 {
+    text-align: center; /* Zarovnání nadpisu na střed */
+    margin-bottom: 20px; /* Přidání mezery pod nadpisem */
+}
+
+/* Styl pro FontAwesome ikony */
+.fa-icon {
+    margin-right: 8px; /* Přidání mezery napravo od ikon */
+    color: #007bff; /* Barva ikon */
+}
+
+.user-profile strong {
     color: #333;
+    font-weight: 500;
 }

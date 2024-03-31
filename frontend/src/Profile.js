@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faEnvelope, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import "./Profile.css"
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
@@ -35,11 +37,11 @@ function Profile() {
             <div className="user-container">
             {userProfile ? (
                 <div className="user-profile">
-                    <h2>Profil uživatele</h2>
-                    <div><strong>Jméno:</strong> {userProfile.firstName}</div>
-                    <div><strong>Příjmení:</strong> {userProfile.lastName}</div>
-                    <div><strong>Email:</strong> {userProfile.email}</div>
-                    <div><strong>Datum narození:</strong> {formatDate(userProfile.dateOfBirth)}</div>
+                    <h2>Moje osobní informace</h2>
+                    <div><FontAwesomeIcon icon={faUser} className="fa-icon" /> <strong>Jméno:</strong> {userProfile.firstName}</div>
+                    <div><FontAwesomeIcon icon={faUser} className="fa-icon" /> <strong>Příjmení:</strong> {userProfile.lastName}</div>
+                    <div><FontAwesomeIcon icon={faEnvelope} className="fa-icon" /> <strong>Email:</strong> {userProfile.email}</div>
+                    <div><FontAwesomeIcon icon={faCalendarAlt} className="fa-icon" /> <strong>Datum narození:</strong> {formatDate(userProfile.dateOfBirth)}</div>
                 </div>
             ) : (
                 <p>Načítání profilu uživatele...</p>
