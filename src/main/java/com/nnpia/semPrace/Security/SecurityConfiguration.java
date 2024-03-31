@@ -43,6 +43,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.PUT, "/api/user/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/user/**").authenticated()
                         .requestMatchers("/muj-profil").authenticated()
+                        .requestMatchers("/sprava").authenticated()
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session

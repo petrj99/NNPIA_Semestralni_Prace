@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 function NavBar() {
     let navigate = useNavigate();
     const isAuthenticated = !!sessionStorage.getItem('token');
+    const isAdmin = sessionStorage.getItem('roles')?.includes('ADMIN');
 
     const handleLogout = () => {
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('roles');
         navigate('/');
     };
 
@@ -27,6 +29,7 @@ function NavBar() {
                     <a href="/" className="menu-item">Úvod</a>
                     <a href="/nabidka-vozidel" className="menu-item">Nabídka vozidel</a>
                     {isAuthenticated && <a href="/muj-profil" className="menu-item">Můj profil</a>}
+                    {isAdmin && <a href="/sprava" className="menu-item">Správa</a>}
                 </div>
                 <div className="login-section">
                     {isAuthenticated ? (
