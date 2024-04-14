@@ -1,35 +1,96 @@
+import React, { useState, useEffect } from 'react';
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
+import { Card, Button } from 'react-bootstrap';
+import ReactPaginate from 'react-paginate';
 
 
 function VehicleOffer() {
+    const [vehicles, setVehicles] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [vehiclesPerPage] = useState(20);
+
+    useEffect(() => {
+        const fetchVehicles = async () => {
+            try {
+                const response = await fetch('/load/vehicles');
+                if (!response.ok) {
+                    throw new Error('Server error: ' + response.status);
+                }
+                const data = await response.json();
+                console.log(data);
+                setVehicles(data);
+            } catch (error) {
+                console.error('Fetching vehicles failed:', error);
+            }
+        };
+
+        fetchVehicles();
+    }, []);
+
+    const handlePageClick = (data) => {
+        let selected = data.selected;
+        setCurrentPage(selected);
+    };
+
+    const offset = currentPage * vehiclesPerPage;
+    const currentPageData = vehicles.slice(offset, offset + vehiclesPerPage);
+
+    const pageCount = Math.ceil(vehicles.length / vehiclesPerPage);
+
     return (
         <div className="vehicle-offer-page">
             <NavBar />
             <div className="container mt-4">
-                {vehicles.map((vehicle) => (
-                    <Card key={vehicle.id} className="mb-4">
-                        <Card.Header as="h5">{vehicle.make} {vehicle.model}</Card.Header>
-                        <Card.Body>
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <Card.Img variant="top" src={vehicle.imageUrl} />
-                                </div>
-                                <div className="col-md-8">
-                                    <Card.Title>{vehicle.model}</Card.Title>
-                                    <Card.Text>
-                                        Rok výroby: {vehicle.year}
-                                        <br />
-                                        Najeto kilometrů: {vehicle.mileage}
-                                        <br />
-                                        Cena: {vehicle.price}
-                                    </Card.Text>
-                                    <Button variant="primary" href={`/vehicles/${vehicle.id}`}>Zobrazit detail</Button>
-                                </div>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                ))}
+                <div className="row">
+                    {currentPageData.map((vehicle, index) => (
+                        <div className="col-md-6" key={vehicle.id}>
+                            <Card className="mb-4">
+                                <Card.Header as="h5">{vehicle.make} {vehicle.model}</Card.Header>
+                                <Card.Body>
+                                    <div className="row">
+                                        <div className="col-md-12 col-lg-6">
+                                            <Card.Img variant="top" src={`data:image/jpeg;base64,${vehicle.image}`} />
+                                        </div>
+                                        <div className="col-md-12 col-lg-6">
+                                            <Card.Title>{vehicle.model}</Card.Title>
+                                            <Card.Text>
+                                                Rok výroby: {vehicle.year}
+                                                <br />
+                                                Najeto kilometrů: {vehicle.mileage}
+                                                <br />
+                                                Registrační značka: {vehicle.licencePlate}
+                                                <br />
+                                                Cena: {vehicle.price} Kč/den včetně DPH
+                                            </Card.Text>
+                                            <Button variant="primary" href={`rezervace/vozidlo/${vehicle.id}`}>Rezervovat</Button>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    ))}
+                </div>
+                <ReactPaginate
+                    previousLabel={'Předchozí'}
+                    nextLabel={'Další'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    nextClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextLinkClassName="page-link"
+                    forcePage={currentPage}
+                />
             </div>
             <Footer />
         </div>
