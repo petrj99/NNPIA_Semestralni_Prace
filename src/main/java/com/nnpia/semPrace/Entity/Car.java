@@ -34,6 +34,8 @@ public class Car {
     private int price;
     @Column(nullable = false, length = 50)
     private String licencePlate;
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
     @OneToMany(mappedBy = "reservedCar")
     private List<Reservation> reservationList = new ArrayList<>();
 }

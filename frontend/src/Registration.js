@@ -5,7 +5,6 @@ import './Registration.css';
 
 function Registration() {
 
-    // Přidání stavu pro každé pole formuláře
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -14,7 +13,6 @@ function Registration() {
         password: '',
     });
 
-    // Funkce pro manipulaci s hodnotami ve formuláři
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData(prevState => ({
@@ -24,11 +22,10 @@ function Registration() {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault(); // Zabrání výchozímu chování formuláře
-        console.log(formData); // Zde by byly data pro odeslání
+        event.preventDefault();
+        console.log(formData);
 
-        // Implementace fetch pro odeslání dat na server
-        fetch('/registrace', { // Použití proxy z package.json
+        fetch('/registrace', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
