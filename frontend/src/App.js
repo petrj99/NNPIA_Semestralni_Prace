@@ -10,6 +10,8 @@ import AddNewCar from "./AddNewCar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './VehicleOffer.css';
+import ReservationForm from "./ReservationForm";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
                   <Route path="/prihlaseni" element={<Login />} />
                   <Route path="/registrace" element={<Registration />} />
                   <Route path="/muj-profil" element={<Profile />} />
+                  <Route path="/rezervace/:carId" element={<ReservationForm />} />
                   <Route path="/sprava" element={<Controls />} />
                   <Route path="/sprava/pridani-vozu" element={<AddNewCar />} />
               </Routes>

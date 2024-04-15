@@ -44,6 +44,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.DELETE, "/api/user/**").authenticated()
                         .requestMatchers("/muj-profil").authenticated()
                         .requestMatchers("/sprava").authenticated()
+                        .requestMatchers("/rezervace").authenticated()
                         .requestMatchers("/controls/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().permitAll()
                 )

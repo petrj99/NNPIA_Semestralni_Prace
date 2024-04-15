@@ -9,6 +9,16 @@ function VehicleOffer() {
     const [vehicles, setVehicles] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [vehiclesPerPage] = useState(20);
+    const isAuthenticated = !!sessionStorage.getItem('token');
+
+    const handleReserve = (carId) => {
+        if (isAuthenticated) {
+            // Todo pridat predani ID do formulare
+            window.location.href = `/rezervace/${carId}`;
+        } else {
+            window.location.href = '/prihlaseni';
+        }
+    };
 
     useEffect(() => {
         const fetchVehicles = async () => {
@@ -45,25 +55,25 @@ function VehicleOffer() {
                 <div className="row">
                     {currentPageData.map((vehicle, index) => (
                         <div className="col-md-6" key={vehicle.id}>
-                            <Card className="mb-4">
-                                <Card.Header as="h5">{vehicle.make} {vehicle.model}</Card.Header>
-                                <Card.Body>
+                            <Card key={vehicle.id} className="mb-4 h-50 custom-card">
+                                <Card.Header as="h5" className="custom-card-header">{vehicle.make} {vehicle.model}</Card.Header>
+                                <Card.Body className="custom-card-body">
                                     <div className="row">
-                                        <div className="col-md-12 col-lg-6">
+                                        <div className="col-md-6">
                                             <Card.Img variant="top" src={`data:image/jpeg;base64,${vehicle.image}`} />
                                         </div>
-                                        <div className="col-md-12 col-lg-6">
-                                            <Card.Title>{vehicle.model}</Card.Title>
-                                            <Card.Text>
+                                        <div className="col-md-6">
+                                            <Card.Title className="custom-card-title">{vehicle.model}</Card.Title>
+                                            <Card.Text className="custom-card-text">
                                                 Rok výroby: {vehicle.year}
                                                 <br />
                                                 Najeto kilometrů: {vehicle.mileage}
                                                 <br />
-                                                Registrační značka: {vehicle.licencePlate}
-                                                <br />
                                                 Cena: {vehicle.price} Kč/den včetně DPH
                                             </Card.Text>
-                                            <Button variant="primary" href={`rezervace/vozidlo/${vehicle.id}`}>Rezervovat</Button>
+                                            <Button variant="primary" onClick={() => handleReserve(vehicle.id)}>
+                                                Rezervovat
+                                            </Button>
                                         </div>
                                     </div>
                                 </Card.Body>
