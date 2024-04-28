@@ -6,6 +6,7 @@ import com.nnpia.semPrace.Repository.ICarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +37,22 @@ public class CarController {
         )).collect(Collectors.toList());
 
         return ResponseEntity.ok(carDtos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CarDto> getCarById(@PathVariable Long id) {
+        return carRepository.findById(id)
+                .map(car -> new CarDto(
+                        car.getId(),
+                        car.getMake(),
+                        car.getModel(),
+                        car.getYear(),
+                        car.getMileage(),
+                        car.getPrice(),
+                        car.getLicencePlate(),
+                        car.getImage() != null ? Base64.getEncoder().encodeToString(car.getImage()) : null
+                ))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

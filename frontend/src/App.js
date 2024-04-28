@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './VehicleOffer.css';
 import ReservationForm from "./ReservationForm";
+import AdminVehicleList from "./AdminVehicleList";
+import EditCar from "./EditCar";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
                   <Route path="/rezervace/:carId" element={<ReservationForm />} />
                   <Route path="/sprava" element={<Controls />} />
                   <Route path="/sprava/pridani-vozu" element={<AddNewCar />} />
+                  <Route path="/sprava/seznam-vozu" element={<AdminVehicleList />} />
+                  <Route path="/sprava/seznam-vozu/edit/:carId" element={<EditCar />} />
               </Routes>
           </BrowserRouter>
       </div>

@@ -1,5 +1,6 @@
 package com.nnpia.semPrace.Controller;
 
+import com.nnpia.semPrace.DTO.CarDto;
 import com.nnpia.semPrace.Entity.Car;
 import com.nnpia.semPrace.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,42 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body("Error při ukládání vozidla.");
+        }
+    }
+
+    @DeleteMapping("/cars/{carId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<?> deleteCar(@PathVariable Long carId) {
+        try {
+            carService.deleteCar(carId);
+            return ResponseEntity.ok().body("Vozidlo bylo úspěšně odstraněno.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Při odstraňování vozidla došlo k chybě.");
+        }
+    }
+
+    @PutMapping("/cars/{carId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<?> updateCar(@PathVariable Long carId, @RequestBody CarDto carDto, @RequestParam(required = false) MultipartFile image) {
+        try {
+            if (image != null && (!image.getContentType().startsWith("image/") || image.getSize() > 5 * 1024 * 1024)) {
+                return ResponseEntity.badRequest().body("Neplatný soubor: zkontrolujte typ a velikost obrázku.");
+            }
+
+            Car car = carService.getCarById(carId).orElseThrow(() -> new Exception("Vozidlo nenalezeno"));
+            car.setMake(carDto.getMake());
+            car.setModel(carDto.getModel());
+            car.setYear(carDto.getYear());
+            car.setMileage(carDto.getMileage());
+            car.setPrice(carDto.getPrice());
+            car.setLicencePlate(carDto.getLicencePlate());
+
+            Car updatedCar = carService.saveCar(car, image);
+            return ResponseEntity.ok(updatedCar);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Při aktualizaci vozidla došlo k chybě.");
         }
     }
 }
