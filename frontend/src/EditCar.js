@@ -67,9 +67,20 @@ function EditCar() {
         e.preventDefault();
         const formData = new FormData();
 
-        for (const key in car) {
-            formData.append(key, car[key]);
-        }
+        // for (const key in car) {
+        //     formData.append(key, car[key]);
+        // }
+
+        formData.append('car', new Blob([JSON.stringify({
+            make: car.make,
+            model: car.model,
+            year: car.year,
+            mileage: car.mileage,
+            price: car.price,
+            licencePlate: car.licencePlate
+        })], {
+            type: 'application/json'
+        }));
 
         if (file) {
             formData.append('image', file);
@@ -109,12 +120,12 @@ function EditCar() {
             <div className="content-container">
                 <form className="car-form" onSubmit={handleSubmit} encType="multipart/form-data">
                     <h2>Úprava vozu</h2>
-                    <input type="text" name="manufacturer" value={car.make} onChange={handleChange} required/>
+                    <input type="text" name="make" value={car.make} onChange={handleChange} required/>
                     <input type="text" name="model" value={car.model} onChange={handleChange} required/>
                     <input type="number" name="year" value={car.year} onChange={handleChange} required/>
                     <input type="number" name="mileage" value={car.mileage} onChange={handleChange} required/>
                     <input type="number" name="price" value={car.price} onChange={handleChange} required/>
-                    <input type="text" name="registration" value={car.licencePlate} onChange={handleChange} required/>
+                    <input type="text" name="licencePlate" value={car.licencePlate} onChange={handleChange} required/>
                     <input type="file" name="image" onChange={handleFileChange} accept="image/*"/>
                     {car.image && (
                         <img src={`data:image/jpeg;base64,${car.image}`} alt="Car"/>

@@ -68,7 +68,7 @@ public class AdminController {
 
     @PutMapping("/cars/{carId}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<?> updateCar(@PathVariable Long carId, @RequestBody CarDto carDto, @RequestParam(required = false) MultipartFile image) {
+    public ResponseEntity<?> updateCar(@PathVariable Long carId, @RequestPart("car") CarDto carDto, @RequestParam(required = false) MultipartFile image) {
         try {
             if (image != null && (!image.getContentType().startsWith("image/") || image.getSize() > 5 * 1024 * 1024)) {
                 return ResponseEntity.badRequest().body("Neplatný soubor: zkontrolujte typ a velikost obrázku.");
@@ -82,8 +82,13 @@ public class AdminController {
             car.setPrice(carDto.getPrice());
             car.setLicencePlate(carDto.getLicencePlate());
 
-            Car updatedCar = carService.saveCar(car, image);
-            return ResponseEntity.ok(updatedCar);
+            if (image != null && !image.isEmpty()) {
+                car = carService.saveCar(car, image);
+            } else {
+                car = carService.saveCarWithoutImage(car);
+            }
+
+            return ResponseEntity.ok(car);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body("Při aktualizaci vozidla došlo k chybě.");
