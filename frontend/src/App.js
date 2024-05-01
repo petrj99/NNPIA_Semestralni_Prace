@@ -14,6 +14,7 @@ import './VehicleOffer.css';
 import ReservationForm from "./ReservationForm";
 import AdminVehicleList from "./AdminVehicleList";
 import EditCar from "./EditCar";
+import ReservationConfirmed from "./ReservationConfirmed";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                   <Route path="/sprava/pridani-vozu" element={<AddNewCar />} />
                   <Route path="/sprava/seznam-vozu" element={<AdminVehicleList />} />
                   <Route path="/sprava/seznam-vozu/edit/:carId" element={<EditCar />} />
+                  <Route path="/potvrzeni-rezervace" element={<ReservationConfirmed />} />
               </Routes>
           </BrowserRouter>
       </div>

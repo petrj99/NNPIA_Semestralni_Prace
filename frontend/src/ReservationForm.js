@@ -26,17 +26,18 @@ const ReservationForm = () => {
                 body: JSON.stringify(reservationData),
             });
 
+            const result = await response.json();
             if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
+                toast.error(`Rezervaci se nepodařilo vytvořit: ${result.error}`);
+                return;
             }
 
-            const result = await response.json();
             toast.success('Rezervace byla úspěšně vytvořena.');
             reset();
             navigate('/potvrzeni-rezervace');
         } catch (error) {
-            toast.error('Rezervaci se nepodařilo vytvořit.');
             console.error(error);
+            toast.error(error.message || 'Rezervaci se nepodařilo vytvořit kvůli interní chybě.');
         }
     };
 

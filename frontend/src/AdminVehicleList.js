@@ -77,8 +77,8 @@ const AdminVehicleList = () => {
                             <td>{vehicle.make}</td>
                             <td>{vehicle.model}</td>
                             <td>{vehicle.year}</td>
-                            <td>{vehicle.mileage}</td>
-                            <td>{vehicle.price}</td>
+                            <td>{vehicle.mileage} Km</td>
+                            <td>{vehicle.price} Kč/den</td>
                             <td>{vehicle.licencePlate}</td>
                             <td>
                                 <Button variant="warning" onClick={() => handleEditClick(vehicle.id)}>

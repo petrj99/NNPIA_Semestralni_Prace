@@ -1,0 +1,9 @@
+.content-box {
+    background-color: rgba(230, 139, 2, 0.8);
+    border-radius: 15px;
+    color: white;
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}

@@ -6,6 +6,7 @@ import com.nnpia.semPrace.Entity.Reservation;
 import com.nnpia.semPrace.Repository.IAppUserRepository;
 import com.nnpia.semPrace.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/reservations")
@@ -36,7 +39,9 @@ public class ReservationController {
             Reservation reservation = reservationService.createReservation(reservationDto, userId);
             return ResponseEntity.ok(reservation);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            Map<String, String> error = new HashMap<>();
+            error.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(error);
         }
     }
 }

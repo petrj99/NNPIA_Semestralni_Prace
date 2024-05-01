@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,25 @@ public class ReservationService {
         Optional<Car> carOptional = carRepository.findById(reservationDto.getCarId());
         if (!carOptional.isPresent()) {
             throw new Exception("Vůz neexistuje.");
+        }
+
+        Date now = new Date();
+        if (reservationDto.getStartTime().before(now) || reservationDto.getEndTime().before(now)) {
+            throw new Exception("Rezervace nemůže být v minulosti.");
+        }
+
+        if (reservationDto.getEndTime().before(reservationDto.getStartTime())) {
+            throw new Exception("Konec rezervace musí být po začátku rezervace.");
+        }
+
+        List<Reservation> existingReservations = reservationRepository.findByReservedCarIdAndEndTimeGreaterThanEqualAndStartTimeLessThanEqual(
+                reservationDto.getCarId(),
+                reservationDto.getStartTime(),
+                reservationDto.getEndTime()
+        );
+
+        if (!existingReservations.isEmpty()) {
+            throw new Exception("Existuje konflikt v rezervacích pro toto vozidlo v zadaném časovém období.");
         }
 
         Reservation reservation = new Reservation();
