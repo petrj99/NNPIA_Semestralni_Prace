@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
+import SearchBar from './Components/SearchBar';
 import { Card, Button } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 
@@ -9,6 +10,7 @@ function VehicleOffer() {
     const [vehicles, setVehicles] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [vehiclesPerPage] = useState(20);
+    const [search, setSearch] = useState('');
     const isAuthenticated = !!sessionStorage.getItem('token');
 
     const handleReserve = (carId) => {
@@ -43,15 +45,26 @@ function VehicleOffer() {
         setCurrentPage(selected);
     };
 
-    const offset = currentPage * vehiclesPerPage;
-    const currentPageData = vehicles.slice(offset, offset + vehiclesPerPage);
+    const handleSearchChange = (query) => {
+        setSearch(query.toLowerCase());
+        setCurrentPage(0);
+    };
 
-    const pageCount = Math.ceil(vehicles.length / vehiclesPerPage);
+    const filteredVehicles = vehicles.filter(vehicle =>
+        vehicle.make.toLowerCase().includes(search) ||
+        vehicle.model.toLowerCase().includes(search) ||
+        vehicle.year.toString().includes(search)
+    );
+
+    const offset = currentPage * vehiclesPerPage;
+    const currentPageData = filteredVehicles.slice(offset, offset + vehiclesPerPage);
+    const pageCount = Math.ceil(filteredVehicles.length / vehiclesPerPage);
 
     return (
         <div className="vehicle-offer-page">
             <NavBar />
             <div className="container mt-4">
+                <SearchBar onSearch={handleSearchChange} />
                 <div className="row">
                     {currentPageData.map((vehicle, index) => (
                         <div className="col-md-6" key={vehicle.id}>

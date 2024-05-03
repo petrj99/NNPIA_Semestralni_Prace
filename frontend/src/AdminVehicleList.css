@@ -1,28 +1,28 @@
 .custom-blue-bg {
-    background-color: #007bff; /* Nahraďte vaší modrou barvou */
+    background-color: #007bff;
     color: white;
 }
 
 .custom-orange-bg {
-    background-color: #ff7c32; /* Nahraďte vaší oranžovou barvou */
+    background-color: #ff7c32;
     color: white;
 }
 
 .custom-orange-border {
-    border-color: #ff7c32; /* Nahraďte vaší oranžovou barvou */
+    border-color: #ff7c32;
 }
 
 .custom-table th {
-    background-color: #007bff; /* Modrá barva pro hlavičku tabulky */
+    background-color: #007bff;
     color: white;
 }
 
 .custom-table tr:nth-of-type(even) {
-    background-color: #f2f2f2; /* Světlý odstín pro řádky tabulky */
+    background-color: #f2f2f2;
 }
 
 .custom-table tr:nth-of-type(odd) {
-    background-color: white; /* Bílá barva pro řádky tabulky */
+    background-color: white;
 }
 
 .custom-table td {
@@ -30,18 +30,16 @@
 }
 
 .custom-table .btn-warning {
-    color: #ffffff; /* Barva textu pro warning tlačítko */
-    background-color: #ff7c32; /* Oranžová barva tlačítka */
-    border-color: #ff7c32; /* Oranžová barva rámečku */
+    color: #ffffff;
+    background-color: #ff7c32;
+    border-color: #ff7c32;
 }
 
 .custom-table .btn-danger {
-    color: #ffffff; /* Barva textu pro danger tlačítko */
-    background-color: #dc3545; /* Bootstrap červená */
-    border-color: #dc3545; /* Bootstrap červená */
+    color: #ffffff;
+    background-color: #dc3545;
+    border-color: #dc3545;
 }
-
-/* Přidat mezery pod tabulkou a nad patičkou */
 .content-container {
     padding-bottom: 2rem;
 }

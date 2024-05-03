@@ -14,6 +14,10 @@ function Controls() {
         navigate('/sprava/seznam-vozu');
     };
 
+    const navigateToReservationList = () => {
+        navigate('/sprava/seznam-rezervaci');
+    };
+
     return (
         <div className="controls-page">
             <NavBar />
@@ -23,6 +27,8 @@ function Controls() {
                     <button onClick={navigateToAddCarPage} className="add-car-button">Přidat nový vůz do nabídky
                     </button>
                     <button onClick={navigateToListCarPage} className="add-car-button">Zobrazit všechny vozy
+                    </button>
+                    <button onClick={navigateToReservationList} className="add-car-button">Zobrazit všechny rezervace
                     </button>
                 </div>
             </div>

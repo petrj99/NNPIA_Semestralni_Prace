@@ -15,6 +15,8 @@ import ReservationForm from "./ReservationForm";
 import AdminVehicleList from "./AdminVehicleList";
 import EditCar from "./EditCar";
 import ReservationConfirmed from "./ReservationConfirmed";
+import AdminReservationList from "./AdminReservationList";
+import EditReservation from "./EditReservation";
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
                   <Route path="/sprava/pridani-vozu" element={<AddNewCar />} />
                   <Route path="/sprava/seznam-vozu" element={<AdminVehicleList />} />
                   <Route path="/sprava/seznam-vozu/edit/:carId" element={<EditCar />} />
+                  <Route path="/sprava/seznam-rezervaci/edit/:reservationId" element={<EditReservation />} />
                   <Route path="/potvrzeni-rezervace" element={<ReservationConfirmed />} />
+                  <Route path="/sprava/seznam-rezervaci" element={<AdminReservationList />} />
               </Routes>
           </BrowserRouter>
       </div>

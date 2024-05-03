@@ -1,22 +1,33 @@
 package com.nnpia.semPrace.Controller;
 
 import com.nnpia.semPrace.DTO.CarDto;
+import com.nnpia.semPrace.DTO.ReservationFullDto;
 import com.nnpia.semPrace.Entity.Car;
+import com.nnpia.semPrace.Entity.Reservation;
+import com.nnpia.semPrace.Repository.ICarRepository;
+import com.nnpia.semPrace.Repository.IReservationRepository;
 import com.nnpia.semPrace.Service.CarService;
+import com.nnpia.semPrace.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/controls")
 public class AdminController {
 
     private final CarService carService;
+    private final ReservationService reservationService;
 
-    public AdminController(CarService carService) {
+    public AdminController(CarService carService, ReservationService reservationService) {
         this.carService = carService;
+        this.reservationService = reservationService;
     }
 
     @PostMapping("/caradd")
@@ -63,6 +74,18 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body("Při odstraňování vozidla došlo k chybě.");
+        }
+    }
+
+    @DeleteMapping("/reservations/{reservationId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<?> deleteReservation(@PathVariable Long reservationId) {
+        try {
+            reservationService.deleteReservation(reservationId);
+            return ResponseEntity.ok().body("Rezervace byla úspěšně zrušena.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Chyba při zrušení rezervace: " + e.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.nnpia.semPrace.Service;
 
 import com.nnpia.semPrace.DTO.ReservationDto;
+import com.nnpia.semPrace.DTO.ReservationFullDto;
 import com.nnpia.semPrace.Entity.AppUser;
 import com.nnpia.semPrace.Entity.Car;
 import com.nnpia.semPrace.Entity.Reservation;
@@ -11,9 +12,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Service
 public class ReservationService {
@@ -66,5 +69,30 @@ public class ReservationService {
         reservation.setEndTime(reservationDto.getEndTime());
 
         return reservationRepository.save(reservation);
+    }
+
+    public ReservationFullDto getReservationById(Long id) throws Exception {
+        Optional<Reservation> reservation = reservationRepository.findById(id);
+        if (!reservation.isPresent()) {
+            throw new Exception("Reservation with ID " + id + " not found");
+        }
+        return convertToDto(reservation.get());
+    }
+
+    private ReservationFullDto convertToDto(Reservation reservation) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        ReservationFullDto dto = new ReservationFullDto();
+        dto.setId(reservation.getId());
+        dto.setUserEmail(reservation.getAppUser().getEmail());
+        dto.setCarModel(reservation.getReservedCar().getModel());
+        dto.setStartTime(dateFormat.format(reservation.getStartTime()));
+        dto.setEndTime(dateFormat.format(reservation.getEndTime()));
+        return dto;
+    }
+
+    public void deleteReservation(Long id) {
+        reservationRepository.deleteById(id);
     }
 }
