@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import SearchBar from './Components/SearchBar';
+import VehicleFilters from './Components/VehicleFilters';
 import { Card, Button } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 
 
 function VehicleOffer() {
     const [vehicles, setVehicles] = useState([]);
+    const [filters, setFilters] = useState({
+        minMileage: '',
+        maxMileage: '',
+        minYear: '',
+        maxYear: '',
+        minPrice: '',
+        maxPrice: ''
+    });
     const [currentPage, setCurrentPage] = useState(0);
     const [vehiclesPerPage] = useState(20);
     const [search, setSearch] = useState('');
@@ -50,10 +59,32 @@ function VehicleOffer() {
         setCurrentPage(0);
     };
 
+    const handleFilterChange = (name, value) => {
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value
+        }));
+    };
+
+    const resetFilters = () => {
+        setFilters({
+            minMileage: '',
+            maxMileage: '',
+            minYear: '',
+            maxYear: '',
+            minPrice: '',
+            maxPrice: ''
+        });
+    };
+
     const filteredVehicles = vehicles.filter(vehicle =>
-        vehicle.make.toLowerCase().includes(search) ||
-        vehicle.model.toLowerCase().includes(search) ||
-        vehicle.year.toString().includes(search)
+        (search === '' || vehicle.make.toLowerCase().includes(search) || vehicle.model.toLowerCase().includes(search) || vehicle.year.toString().includes(search)) &&
+        (!filters.minMileage || vehicle.mileage >= Number(filters.minMileage)) &&
+        (!filters.maxMileage || vehicle.mileage <= Number(filters.maxMileage)) &&
+        (!filters.minYear || vehicle.year >= Number(filters.minYear)) &&
+        (!filters.maxYear || vehicle.year <= Number(filters.maxYear)) &&
+        (!filters.minPrice || vehicle.price >= Number(filters.minPrice)) &&
+        (!filters.maxPrice || vehicle.price <= Number(filters.maxPrice))
     );
 
     const offset = currentPage * vehiclesPerPage;
@@ -65,6 +96,7 @@ function VehicleOffer() {
             <NavBar />
             <div className="container mt-4">
                 <SearchBar onSearch={handleSearchChange} />
+                <VehicleFilters filters={filters} onFilterChange={handleFilterChange} onResetFilters={resetFilters} />
                 <div className="row">
                     {currentPageData.map((vehicle, index) => (
                         <div className="col-md-6" key={vehicle.id}>

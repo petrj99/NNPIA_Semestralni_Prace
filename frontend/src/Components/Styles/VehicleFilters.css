@@ -1,0 +1,17 @@
+.filters-container {
+    background-color: rgba(230, 139, 2, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    width: 50%;
+}
+
+.filter-input input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

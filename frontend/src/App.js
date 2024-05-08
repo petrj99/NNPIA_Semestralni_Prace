@@ -15,7 +15,7 @@ import ReservationForm from "./ReservationForm";
 import AdminVehicleList from "./AdminVehicleList";
 import EditCar from "./EditCar";
 import ReservationConfirmed from "./ReservationConfirmed";
-import AdminReservationList from "./AdminReservationList";
+import AdminReservationList from "./AdminPanel/AdminReservationList";
 import EditReservation from "./EditReservation";
 
 function App() {
