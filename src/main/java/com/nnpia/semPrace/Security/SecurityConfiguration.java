@@ -45,6 +45,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/muj-profil").authenticated()
                         .requestMatchers("/sprava").authenticated()
                         .requestMatchers("/rezervace").authenticated()
+                        //přidat i endpointy
                         .requestMatchers("/controls/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().permitAll()
                 )
