@@ -3,6 +3,7 @@ package com.nnpia.semPrace.DTO;
 
 import jakarta.validation.constraints.Past;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.validation.constraints.NotBlank;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class RegistrationDto {
     @NotBlank(message = "Jméno je povinné.")
     private String firstName;
