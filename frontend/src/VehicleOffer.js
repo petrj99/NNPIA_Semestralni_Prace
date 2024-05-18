@@ -5,6 +5,7 @@ import SearchBar from './Components/SearchBar';
 import VehicleFilters from './Components/VehicleFilters';
 import { Card, Button } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
+import SortDropdown from "./Components/SortDropdown";
 
 
 function VehicleOffer() {
@@ -20,6 +21,7 @@ function VehicleOffer() {
     const [currentPage, setCurrentPage] = useState(0);
     const [vehiclesPerPage] = useState(20);
     const [search, setSearch] = useState('');
+    const [sortConfig, setSortConfig] = useState({ attribute: 'mileage', order: 'asc' });
     const isAuthenticated = !!sessionStorage.getItem('token');
 
     const handleReserve = (carId) => {
@@ -77,7 +79,19 @@ function VehicleOffer() {
         });
     };
 
-    const filteredVehicles = vehicles.filter(vehicle =>
+    const handleSortChange = (attribute, order) => {
+        setSortConfig({ attribute, order });
+    };
+
+    const sortedVehicles = vehicles.sort((a, b) => {
+        if (sortConfig.order === 'asc') {
+            return a[sortConfig.attribute] > b[sortConfig.attribute] ? 1 : -1;
+        } else {
+            return a[sortConfig.attribute] < b[sortConfig.attribute] ? 1 : -1;
+        }
+    });
+
+    const filteredVehicles = sortedVehicles.filter(vehicle =>
         (search === '' || vehicle.make.toLowerCase().includes(search) || vehicle.model.toLowerCase().includes(search) || vehicle.year.toString().includes(search)) &&
         (!filters.minMileage || vehicle.mileage >= Number(filters.minMileage)) &&
         (!filters.maxMileage || vehicle.mileage <= Number(filters.maxMileage)) &&
@@ -97,6 +111,7 @@ function VehicleOffer() {
             <div className="container mt-4">
                 <SearchBar onSearch={handleSearchChange} />
                 <VehicleFilters filters={filters} onFilterChange={handleFilterChange} onResetFilters={resetFilters} />
+                <SortDropdown onSortChange={handleSortChange} />
                 <div className="row">
                     {currentPageData.map((vehicle, index) => (
                         <div className="col-md-6" key={vehicle.id}>
