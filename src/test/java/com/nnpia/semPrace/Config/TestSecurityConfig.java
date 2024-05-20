@@ -3,15 +3,15 @@ package com.nnpia.semPrace.Config;
 import com.nnpia.semPrace.Security.JwtTokenUtil;
 import com.nnpia.semPrace.Service.CustomUserDetailsService;
 import org.mockito.Mockito;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+@TestConfiguration
 @EnableWebSecurity
 public class TestSecurityConfig {
 
@@ -30,11 +30,13 @@ public class TestSecurityConfig {
     }
 
     @Bean
+    @Primary
     public JwtTokenUtil jwtTokenUtil() {
         return Mockito.mock(JwtTokenUtil.class);
     }
 
     @Bean
+    @Primary
     public CustomUserDetailsService customUserDetailsService() {
         return Mockito.mock(CustomUserDetailsService.class);
     }

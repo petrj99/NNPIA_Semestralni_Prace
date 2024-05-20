@@ -26,7 +26,7 @@ public class Car {
     private String make;
     @Column(nullable = false, length = 50)
     private String model;
-    @Column(nullable = false, length = 50)
+    @Column(name = "\"year\"", nullable = false, length = 50)
     private int year;
     @Column(nullable = false, length = 50)
     private int mileage;
