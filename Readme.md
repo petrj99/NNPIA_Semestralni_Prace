@@ -6,6 +6,7 @@
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Schema Visualisation](#schema-visualisation)
 
 ## Introduction
 The Car Rental Web Application is a platform that allows users to browse, search, filter, and sort a wide variety of vehicles available for reservation. This application is built using modern web development technologies to provide a seamless user experience.
@@ -69,3 +70,6 @@ The Car Rental Web Application is a platform that allows users to browse, search
 3. Apply filters to narrow down your search results.
 4. Use the sorting dropdown to arrange the vehicle list by mileage, year, or price.
 5. Click the "Reserve" button to reserve a vehicle (requires authentication).
+
+## Schema Visualisation
+![Car Rental App](docs/diagram_semPrace.jpg)
