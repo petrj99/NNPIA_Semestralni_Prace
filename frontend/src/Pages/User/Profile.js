@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-import "./Profile.css"
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
+import "./Styles/Profile.css"
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
 
 function Profile() {
     const [userProfile, setUserProfile] = useState({

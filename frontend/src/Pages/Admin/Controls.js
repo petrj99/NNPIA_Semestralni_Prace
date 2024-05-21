@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
-import './Controls.css';
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
+import './Styles/Controls.css';
 
 function Controls() {
     let navigate = useNavigate();

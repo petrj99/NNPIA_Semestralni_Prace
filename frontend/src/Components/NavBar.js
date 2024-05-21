@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../images/nnpia_logo.png';
+import logo from '../Assets/images/nnpia_logo.png'
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {

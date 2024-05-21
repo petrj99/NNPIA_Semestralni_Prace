@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
-import SearchBar from './Components/SearchBar';
-import VehicleFilters from './Components/VehicleFilters';
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
+import SearchBar from '../../Components/SearchBar';
+import VehicleFilters from '../../Components/VehicleFilters';
 import { Card, Button } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
-import SortDropdown from "./Components/SortDropdown";
+import SortDropdown from "../../Components/SortDropdown";
 
 
 function VehicleOffer() {

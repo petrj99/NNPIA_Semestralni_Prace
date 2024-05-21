@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
-import "./AddNewCar.css"
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
+import "./Styles/AddNewCar.css"
 import { toast } from 'react-toastify';
 
 function EditCar() {

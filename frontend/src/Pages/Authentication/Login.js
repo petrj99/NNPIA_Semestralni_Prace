@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Login.css';
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
+import './Styles/Login.css';
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
 
 function Login() {
     const [email, setEmail] = useState('');

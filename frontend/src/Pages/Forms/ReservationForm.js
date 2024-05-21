@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
 
 const ReservationForm = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();

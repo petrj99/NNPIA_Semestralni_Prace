@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
 import { toast } from 'react-toastify';
-import "./AddNewCar.css";
+import "./Styles/AddNewCar.css";
 import 'react-toastify/dist/ReactToastify.css';
 
 function EditReservation() {

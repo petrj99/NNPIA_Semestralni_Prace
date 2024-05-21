@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Table, Button} from 'react-bootstrap';
-import Footer from "./Components/Footer";
-import NavBar from "./Components/NavBar";
-import './AdminVehicleList.css';
+import Footer from "../../Components/Footer";
+import NavBar from "../../Components/NavBar";
+import './Styles/AdminVehicleList.css';
 import {useNavigate} from "react-router-dom";
 
 const AdminVehicleList = () => {

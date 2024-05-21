@@ -1,22 +1,21 @@
-import './App.css';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
-import HomePage from './HomePage';
-import VehicleOffer from './VehicleOffer';
-import Login from "./Login";
-import Registration from "./Registration";
-import Profile from "./Profile";
-import Controls from "./Controls";
-import AddNewCar from "./AddNewCar";
+import HomePage from './Pages/Information/HomePage';
+import VehicleOffer from './Pages/User/VehicleOffer';
+import Login from "./Pages/Authentication/Login";
+import Registration from "./Pages/Registration/Registration";
+import Profile from "./Pages/User/Profile";
+import Controls from "./Pages/Admin/Controls";
+import AddNewCar from "./Pages/Forms/AddNewCar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './VehicleOffer.css';
-import ReservationForm from "./ReservationForm";
-import AdminVehicleList from "./AdminVehicleList";
-import EditCar from "./EditCar";
-import ReservationConfirmed from "./ReservationConfirmed";
+import './Pages/User/Styles/VehicleOffer.css';
+import ReservationForm from "./Pages/Forms/ReservationForm";
+import AdminVehicleList from "./Pages/Admin/AdminVehicleList";
+import EditCar from "./Pages/Forms/EditCar";
+import ReservationConfirmed from "./Pages/Information/ReservationConfirmed";
 import AdminReservationList from "./AdminPanel/AdminReservationList";
-import EditReservation from "./EditReservation";
+import EditReservation from "./Pages/Forms/EditReservation";
 
 function App() {
   return (
